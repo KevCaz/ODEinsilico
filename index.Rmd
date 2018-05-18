@@ -276,7 +276,7 @@ $$dt > dt^2 > dt^3 > ... $$
 
 --
 
-$$x_{dt} = x_0 + \frac{dx}{dt}x =  x_0 + \frac{dx}{dt}\dot{x}$$
+$$x_{dt} = x_0 + \frac{dx}{dt}x_0 =  x_0 + \dot{x}x_0$$
 
 
 ---
