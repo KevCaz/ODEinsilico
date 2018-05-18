@@ -191,7 +191,7 @@ class: inverse, center, middle
 
 # Solving ODE with additions
 
-## Why not?
+## no more but no less
 
 ---
 
