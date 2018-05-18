@@ -1,0 +1,342 @@
+---
+title: "ODE in silico"
+# subtitle: ""
+author: "Kevin Cazelles"
+date: "2018/02/16"
+output:
+  xaringan::moon_reader:
+    includes:
+      in_header: inSileco-header.html  
+    lib_dir: assets
+    seal: false
+    css: ["default", "inSileco.css", "inSileco-fonts.css"]
+    nature:
+      beforeInit: "inSileco-macros.js"
+      #autoplay: 30000
+      #countdown: 60000
+---
+
+```{r setup, echo = F}
+knitr::opts_chunk$set(
+  comment = "#R>",
+  collapse = TRUE,
+  warning = FALSE,
+  message = FALSE,
+  fig.width = 7.5,
+  fig.height = 6,
+  fig.align = 'center',
+  width = 120
+)
+mypar <- list(fg = "#303940", bg = "transparent", las = 1)
+```
+
+
+<br><br>
+
+.maintitle[<i class="fa fa-angle-double-right" aria-hidden="true"></i>ODE *in silico*]
+
+
+<br>
+
+.column[
+## A few thoughts - May 17, 2017
+
+.left[![:faic](github) [inSileco/xaringan-inSileco](https://github.com/inSileco/xaringan-inSileco)]
+]
+
+.column[
+.right[![:scale 16%](assets/img/inSilecoLogo.png)]
+]
+
+
+
+
+
+
+
+
+
+---
+class: inverse, center, middle
+
+# Part 1
+
+## What a computer can do
+
+
+---
+
+# Data
+
+--
+
+- Any kind of data is a collection of 0 and 1
+
+- basic unity of information is a **bit**
+
+- Any kind of is a collection of **bits**
+
+- An octet is a collection of 8 bits
+
+- A kilo-octet (ko) is a collection of 1000 octets
+
+- beware of the *bytes*
+
+
+---
+
+# What does a computer do?
+
+
+--
+
+- **the core a computer can only change 0 to 1 and 1 to 0**
+
+--
+
+- comes with a collection of I/O devices
+
+--
+
+- very, very fast computation on bits  
+
+--
+
+- that's actually enough!
+
+
+---
+
+# What does a computer do?
+
+
+- 8 bits to represent and integer (a natural number betwenn 0 and $2^8 = 256$)
+
+- `c = a + b`
+
+--
+
+- `a = 11`: `00001011` ![:faic](long-arrow-right) $2^3 + 2^1 + 1 = 8 + 2 + 1 = 11$
+
+- `b = 14`: `00001110`
+
+--
+
+- `c = ?` c = 10101101
+
+--
+
+- a + b: `00001110 + 00001011`
+
+---
+
+# What does a computer do?
+
+<br>
+
+```
+        00001110
+      + 00001011
+      ==========
+      = 00011001
+```
+
+- 1+8+16 = 25
+
+
+---
+
+# What does a computer do?
+
+<br>
+
+```
+       1011   (this is 11 in binary)
+     x 1110   (this is 14 in binary)
+    =========
+       0000   (this is 1011 x 0)
+      1011    (this is 1011 x 1, shifted one position to the left)
+     1011     (this is 1011 x 1, shifted two positions to the left)
+  + 1011      (this is 1011 x 1, shifted three positions to the left)
+    =========
+    10011010   (this is 154 in binary)
+```
+
+<i class="fa fa-external-link" aria-hidden="true"></i> https://en.wikipedia.org/wiki/Binary_multiplier
+
+
+---
+
+# What does a computer do?
+
+## But what about... everything else?
+
+- For instance $e^2$
+
+--
+
+- Use Math! $e^2 = e \times e$
+
+--
+- you only need $e$
+
+--
+
+- `math.h` includes its value $2.718281828459045235360287471352662498$
+
+--
+- **Conclusion**: we actually need a lot of math to do a math with only additions only <i class="fa fa-long-arrow-right" aria-hidden="true"></i> the era of algorithms
+
+
+---
+class: inverse, center, middle
+
+# Solving ODE with additions
+
+## Why not?
+
+---
+
+# Solving an ODE
+
+- $\dot{x} = f(x,\theta, t)$
+
+--
+
+- Solution $x(t) = g(t,\theta, x_0)$
+
+--
+
+- remember $\dot{x} = ax$, so $\theta = a$
+
+--
+
+- three cases:
+
+  1. doable by hand
+
+  2. get an analytical solution with a computer
+
+  3. get a numerical approximation
+
+
+
+---
+
+# doable by hand
+
+- Done! a computer... what for?
+
+--
+
+- to do further analysis / plot for a given $x_0$ / draw vector fields...
+
+--
+
+```
+  Function solution(x0, θ, t)
+    g(x0, θ, t)
+  end
+```
+
+
+---
+
+# Get an analytical solution *in silico*
+
+
+- a bit more complex...
+
+--
+
+- Maple https://fr.maplesoft.com/support/help/maple/view.aspx?path=dsolve
+
+- Sage http://doc.sagemath.org/html/en/reference/calculus/sage/calculus/desolvers.html
+
+- Mathematica http://reference.wolfram.com/language/howto/SolveADifferentialEquation.html
+
+
+- the magick of `dsolve`
+
+---
+
+# Get a numerical approximation
+
+- $\dot{x} = \frac{dx}{dt} = f(x,\theta, t)$ and $x(0) = x_0$
+
+--
+
+- Idea: $x_0$ what about $x_{dt}$ ...
+
+--
+
+$$x_{dt} = x_0 + \sum_i^\infty \frac{1}{n!} \frac{dx^{(n)}}{dt^n} (dt)^n $$
+
+--
+
+$$dt > dt^2 > dt^3 > ... $$
+
+--
+
+$$x_{dt} = x_0 + \frac{dx}{dt}x =  x_0 + \frac{dx}{dt}\dot{x}$$
+
+
+---
+
+# Get a numerical approximation
+
+- Now I have $x_0$, $x_{dt}$, what next?
+
+--
+
+- repeat same process to get $x_{2dt}$
+
+--
+
+- only multiplication and additions... so algorithm!
+
+
+---
+
+# Euler's methods
+
+```
+\\ function
+Function myode(x, θ, t)
+  f(x, θ, t)
+end
+
+
+\\ Euler
+Function(x0, t0, dt, niter, myode)
+  x = vector(niter)
+  x[0] = x0
+  for 1:niter  
+    do x[i] = x[i-1] + x[i-1] myode(x[i-1], θ, t)
+  end
+
+  return x
+end
+
+
+```
+
+
+<i class="fa fa-external-link" aria-hidden="true"></i> [Runge-Kutta methods](https://en.wikipedia.org/wiki/Runge%E2%80%93Kutta_methods)
+
+
+---
+
+# Many programming languages
+
+- Julia: http://docs.juliadiffeq.org/latest/
+
+- Octave: https://octave.org/doc/v4.0.3/Ordinary-Differential-Equations.html
+
+- Python: https://docs.scipy.org/doc/scipy-0.14.0/reference/generated/scipy.integrate.ode.html
+
+- R: https://cran.r-project.org/web/packages/deSolve/index.html https://www.r-pkg.org/badges/version/odeintr
+
+- Rust: https://docs.rs/GSL/0.4.26/rgsl/types/ordinary_differential_equations/index.html
+
+- FORTRAN C/C++
