@@ -39,9 +39,9 @@ mypar <- list(fg = "#303940", bg = "transparent", las = 1)
 <br>
 
 .column[
-## A few thoughts - May 17, 2017
+## A few notes - May 17, 2017
 
-.left[![:faic](github) [inSileco/xaringan-inSileco](https://github.com/inSileco/xaringan-inSileco)]
+.left[![:faic](github) [KevCaz/ODEinsilico](https://github.com/KevCaz/ODEinsilico)]
 ]
 
 .column[
@@ -70,15 +70,15 @@ class: inverse, center, middle
 
 --
 
-- Any kind of data is a collection of 0 and 1
+- any kind of data is a collection of 0 and 1
 
 - basic unity of information is a **bit**
 
-- Any kind of is a collection of **bits**
+- any kind of is a collection of **bits**
 
-- An octet is a collection of 8 bits
+- an octet is a collection of 8 bits
 
-- A kilo-octet (ko) is a collection of 1000 octets
+- a kilo-octet (ko) is a collection of 1000 octets
 
 - beware of the *bytes*
 
@@ -96,11 +96,9 @@ class: inverse, center, middle
 
 - comes with a collection of I/O devices
 
---
 
 - very, very fast computation on bits  
 
---
 
 - that's actually enough!
 
@@ -122,7 +120,7 @@ class: inverse, center, middle
 
 --
 
-- `c = ?` c = 10101101
+- `c = ?` `c = 10101101`
 
 --
 
@@ -185,7 +183,7 @@ class: inverse, center, middle
 - `math.h` includes its value $2.718281828459045235360287471352662498$
 
 --
-- **Conclusion**: we actually need a lot of math to do a math with only additions only <i class="fa fa-long-arrow-right" aria-hidden="true"></i> the era of algorithms
+- **Conclusion**: we actually need a lot of math to do math using additions only <i class="fa fa-long-arrow-right" aria-hidden="true"></i> the era of algorithms
 
 
 ---
@@ -207,7 +205,7 @@ class: inverse, center, middle
 
 --
 
-- remember $\dot{x} = ax$, so $\theta = a$
+- remember $\dot{x} = ax$, here $\theta = a$
 
 --
 
@@ -235,7 +233,7 @@ class: inverse, center, middle
 
 ```
   Function solution(x0, θ, t)
-    g(x0, θ, t)
+    return g(x0, θ, t)
   end
 ```
 
@@ -293,7 +291,7 @@ $$x_{dt} = x_0 + \frac{dx}{dt}x =  x_0 + \frac{dx}{dt}\dot{x}$$
 
 --
 
-- only multiplication and additions... so algorithm!
+- only multiplications and additions... so use algorithms!
 
 
 ---
